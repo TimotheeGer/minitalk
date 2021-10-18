@@ -6,11 +6,11 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:13:57 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/18 12:24:41 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/18 23:56:32 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minitalk.h"
+#include "../includes/minitalk.h"
 
 int	ft_error(char *str)
 {

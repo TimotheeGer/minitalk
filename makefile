@@ -1,4 +1,4 @@
-# **************************************************************************** #
+ # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
@@ -6,47 +6,54 @@
 #    By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 15:04:29 by tigerber          #+#    #+#              #
-#    Updated: 2021/10/18 16:37:24 by tigerber         ###   ########.fr        #
+#    Updated: 2021/10/19 00:54:40 by tigerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME1 = server
-NAME2 = client
+CC 		= gcc
+CFLAGS 	= -Wall -Wextra -Werror -I ./include/
+EXEC_C 	= prog_client
+EXEC_S 	= prog_server
 
-SRCS1 =	server/server.c \
-		utils_minitalk.c \
-		utils_minitalk_two.c
+SRC_C =	./client/client.c \
+		./utils/utils_minitalk.c \
+		./utils/utils_minitalk_two.c
 
-SRCS2 = client/client.c \
-		utils_minitalk.c \
-		utils_minitalk_two.c
+SRC_S =	./server/server.c \
+		./utils/utils_minitalk.c \
+		./utils/utils_minitalk_two.c
 
-CC = gcc
+OBJ_C =	$(SRC_C:.c=.o)
+OBJ_S =	$(SRC_S:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I ./include/
+all : $(EXEC_C) $(EXEC_S) 
 
-HEADER = -I ./includes/
+$(EXEC_C) : $(OBJ_C)
+	@$(CC) $(CFLAGS) -o $(EXEC_C) $(OBJ_C)
+	@printf "\x1b[32m--------------------------------------\n" 
+	@printf "\x1b[32m./$@ successfully build 💻 ✅\e[0m\n" 
+	@printf "\x1b[32m--------------------------------------\n" 
 
-OBJS1 = $(SERVER:%.c=%.o)
-OBJS2 = $(CLIENT:%.c=%.o)
+$(EXEC_S) : $(OBJ_S)
+	@$(CC) $(CFLAGS) -o $(EXEC_S) $(OBJ_S)
+	@printf "\e[38;5;46m./$@ successfully build 🖥  ✅\e[0m\n"
+	@printf "\e[38;5;46m--------------------------------------\n"
 
-$(NAME1): $(OBJS1)
-	$(CC) $(CFLAGS) $(OBJS1) -o $(NAME1) $(LIBS)
+%.o : %.c
+	@$(CC) $(CFLAGS) -o $@ -c $<
+	
+clean :
+	@rm -rf ./client/*.o
+	@rm -rf ./server/*.o
+	@rm -rf ./utils/*.o
+	@printf "\e[38;5;206m--------------------------------------\n"
+	@printf "\e[38;5;206mAll.o files deleted              🗑  ❌\e[0m\n"
+	@printf "\e[38;5;206m--------------------------------------\n"
 
-$(NAME2): $(OBJS2)
-	$(CC) $(CFLAGS) $(OBJS2) -o $(NAME2) $(LIBS)
+fclean : clean
+	@rm -rf prog_client
+	@rm -rf prog_server
+	@printf "\e[38;5;200mProg deleted                     🗑  ❌\e[0m\n"
+	@printf "\e[38;5;200m--------------------------------------\n"
 
-all: $(NAME1) $(NAME2)
-
-%.o%.c:
-	$(CC) -c $(CFLAGS) -I $(HEADER) $< -o ${<:.c=.o}
-
-clean:
-	rm -f $(OBJS1) $(OBJS2) $(OBJS_BONUS)
-
-fclean: clean
-	rm -f $(OBJS1) $(OBJS2)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+re : fclean all
