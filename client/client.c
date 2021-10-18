@@ -6,70 +6,58 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:01:31 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/13 19:52:08 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:24:57 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-// void    minitalk_client(pid_t pid, char *str)
-// {
-// 	int i = 0;
-
-// 	if (kill(pid, SIGUSR2) == -1)
-// 		exit(0);
-// 	if (kill(pid, SIGUSR1) == -1)
-// 		exit(0);
-	
-// }
-
-
-void	convert_bits(pid_t pid, char c)
+int	ft_send_signal(pid_t pid, char c)
 {
-	// t     		i       			m 
-	// 116   		105					109
-	// 1110100		1101001				1101101
-	int i = 6;
+	int	i;
 
+	i = 6;
 	while (i >= 0)
 	{
 		if ((c & (1 << i)))
-			kill(pid, SIGUSR1);
+		{
+			if (kill(pid, SIGUSR1) == -1)
+				return (ft_error("Error PID.\n"));
+		}
 		else
-			kill(pid, SIGUSR2);
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				return (ft_error("Error PID.\n"));
+		}
 		i--;
 		usleep(1000);
 	}
+	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	pid_t pid = atoi(av[1]);
-	int i = 0;
+	int		i;
+	pid_t	pid;
 
-	while (av[2][i])
+	if (ac == 1)
+		return (ft_error("Error missing PID & Argument.\n"));
+	if (ac == 2)
+		return (ft_error("Error missing Argument.\n"));
+	if (ac == 3)
 	{
-		convert_bits(pid, av[2][i]);
-		i++;
+		i = 0;
+		pid = ft_atoi(av[1]);
+		while (av[2][i])
+		{
+			if (!ft_send_signal(pid, av[2][i]))
+				return (0);
+			i++;
+		}
+		if (!ft_send_signal(pid, '\n'))
+			return (0);
 	}
-	// char *str = "01101001";
-	// int i = 0;
-	
-	// while (str[i])
-	// {
-	// 	if (str[i] == '0') {
-	// 		kill(pid, SIGUSR1);
-	// 	}
-	// 	if ( str[i] == '1')
-	// 		kill(pid, SIGUSR2);
-	// 	i++;	
-	// 	usleep(800);
-	// }
-	// if (nb == 0)
-	// 	kill(pid, SIGUSR1);
-	// if (nb == 1)
-	// 	kill(pid, SIGUSR2);
-	// minitalk_client(atoi(av[1]), av[2]);
+	if (ac < 3)
+		return (ft_error("Error to much Argumment.\n"));
+	return (0);
 }
-
-//malloc et realoc 
