@@ -6,7 +6,7 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:04:55 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/18 12:30:06 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:07:22 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_minitalk
 {
 	char	buff[BUFF_MAX];
 	int		x;
+	char  	*str;
+	char	*temp;
 }				t_minitalk;
 
 int		ft_send_signal(pid_t pid, char c);
@@ -49,5 +51,11 @@ int		ft_atoi(const char *nptr);
 void	ft_putnbr(long nb);
 
 int		ft_error(char *str);
+
+void	ft_stock_char_and_put(t_minitalk *d, char c);
+
+int		ft_error_malloc(t_minitalk *d, char *str);
+
+void	ft_free_and_null(t_minitalk *d);
 
 #endif

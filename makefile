@@ -12,14 +12,14 @@
 
 CC 		= gcc
 CFLAGS 	= -Wall -Wextra -Werror -I ./include/
-EXEC_C 	= prog_client
-EXEC_S 	= prog_server
+EXEC_C 	= client
+EXEC_S 	= server
 
-SRC_C =	./client/client.c \
+SRC_C =	./ft_client/client.c \
 		./utils/utils_minitalk.c \
 		./utils/utils_minitalk_two.c
 
-SRC_S =	./server/server.c \
+SRC_S =	./ft_server/server.c \
 		./utils/utils_minitalk.c \
 		./utils/utils_minitalk_two.c
 
@@ -43,16 +43,16 @@ $(EXEC_S) : $(OBJ_S)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 	
 clean :
-	@rm -rf ./client/*.o
-	@rm -rf ./server/*.o
+	@rm -rf ./ft_client/*.o
+	@rm -rf ./ft_server/*.o
 	@rm -rf ./utils/*.o
 	@printf "\e[38;5;206m--------------------------------------\n"
 	@printf "\e[38;5;206mAll.o files deleted              🗑  ❌\e[0m\n"
 	@printf "\e[38;5;206m--------------------------------------\n"
 
 fclean : clean
-	@rm -rf prog_client
-	@rm -rf prog_server
+	@rm -rf $(EXEC_C)
+	@rm -rf $(EXEC_S)
 	@printf "\e[38;5;200mProg deleted                     🗑  ❌\e[0m\n"
 	@printf "\e[38;5;200m--------------------------------------\n"
 

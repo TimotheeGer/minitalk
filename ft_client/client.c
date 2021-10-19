@@ -6,7 +6,7 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:01:31 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/18 23:56:19 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:11:11 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_send_signal(pid_t pid, char c)
 				return (ft_error("Error PID.\n"));
 		}
 		i--;
-		usleep(1000);
+		usleep(200);
 	}
 	return (1);
 }

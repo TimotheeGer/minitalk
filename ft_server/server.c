@@ -6,15 +6,13 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:01:04 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/18 23:56:24 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:14:01 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
 t_minitalk	d;
-
-void	ft_put_bin_to_char(char *str);
 
 void	ft_empty_buff(t_minitalk *d)
 {
