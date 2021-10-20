@@ -6,7 +6,7 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:04:55 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/19 16:07:22 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:50:30 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 # include <string.h>
 
 # define BUFF_MAX 7
+# define BUFF_M 2048
 
 typedef struct s_minitalk
 {
 	char	buff[BUFF_MAX];
+	char	buf[BUFF_M];
+	int		i;
 	int		x;
-	char  	*str;
-	char	*temp;
 }				t_minitalk;
 
 int		ft_send_signal(pid_t pid, char c);
@@ -42,7 +43,7 @@ void	*ft_memset(void *s, int c, size_t n);
 
 int		ft_strlen(char *str);
 
-char	*ft_itoa(int n);
+char	*ft_itoa(long n);
 
 int		countnum(int n);
 
@@ -52,10 +53,6 @@ void	ft_putnbr(long nb);
 
 int		ft_error(char *str);
 
-void	ft_stock_char_and_put(t_minitalk *d, char c);
-
-int		ft_error_malloc(t_minitalk *d, char *str);
-
-void	ft_free_and_null(t_minitalk *d);
+void	ft_put_buff_print(t_minitalk *d, char c);
 
 #endif

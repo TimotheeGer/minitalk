@@ -6,7 +6,7 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:01:31 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/19 17:11:11 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:35:05 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_send_signal(pid_t pid, char c)
 				return (ft_error("Error PID.\n"));
 		}
 		i--;
-		usleep(200);
+		usleep(400);
 	}
 	return (1);
 }
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 				return (0);
 			i++;
 		}
-		if (!ft_send_signal(pid, '\n'))
+		if (!ft_send_signal(pid, '\0'))
 			return (0);
 	}
 	if (ac < 3)

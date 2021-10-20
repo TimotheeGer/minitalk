@@ -6,7 +6,7 @@
 /*   By: tigerber <tigerber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 11:27:10 by tigerber          #+#    #+#             */
-/*   Updated: 2021/10/18 23:56:28 by tigerber         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:50:22 by tigerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,32 +93,30 @@ int	countnum(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
 	int		size;
 	char	*str;
-	long	nb;
 
-	nb = n;
 	size = countnum(n);
 	str = malloc(sizeof(char) * size + 1);
 	if (!str)
 		return (NULL);
 	str[size] = '\0';
-	if (nb == 0)
+	if (n == 0)
 	{
 		str[0] = '0';
 		return (str);
 	}
-	if (nb < 0)
+	if (n < 0)
 	{
 		str[0] = '-';
-		nb = nb * -1;
+		n = n * -1;
 	}
-	while (size-- && nb > 0)
+	while (size-- && n > 0)
 	{
-		str[size] = nb % 10 + 48;
-		nb = nb / 10;
+		str[size] = n % 10 + 48;
+		n = n / 10;
 	}
 	return (str);
 }
